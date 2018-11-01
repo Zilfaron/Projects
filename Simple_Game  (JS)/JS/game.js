@@ -46,7 +46,6 @@ class Game {
 
 		this.started = false;
 
-		// If the width or height is larger than the window then, reduce it
 		this.width = width > window.innerWidth - 10 ? window.innerWidth - 10 : width;
 		this.height = height > window.innerHeight - 10 ? window.innerHeight - 10 : height;
 
@@ -139,7 +138,6 @@ class Game {
 		}		
 
 		function frame() {
-			// if player and objects coordinates are valid, then initialize lose method
 			var lose_X = self.player.x < safe_area || self.player.x > safe_area + 40,
 					lose_Y = objects_y > self.player.y - 20 && objects_y < self.player.y + self.player.height;
 
@@ -186,18 +184,23 @@ class Game {
 
 	reset() {
 		var game_result = this.current_wave < 0 ? 0 : this.current_wave;
+
 		localStorage.removeItem("last-game-progress");
 		localStorage.setItem("last-game-progress", `${game_result}/${this.waves}`);		
 		updateInfo();
+
 		tutorial.hidden = false;
+
 		this.clear();
 		this.canvas.classList.add("canvas_scaled");
 		this.started = false;
 		document.onmousemove = null;
 		this.current_wave = -3;
 		clearInterval(this.wave_interval);
+
 		start_btn.setAttribute("disabled", "");
 		start_btn.setAttribute("title", "Please wait");
+		
 		setTimeout( function() {
 			start_btn.removeAttribute("disabled");
 			start_btn.removeAttribute("title");
