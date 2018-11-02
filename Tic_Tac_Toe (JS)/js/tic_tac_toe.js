@@ -1,12 +1,12 @@
 (function(d) {
 	"use strict";
-	console.log(!!d);
 
 	let field 				 = [],
 			fieldSize 		 = 3,
 			currentPlayer  = null,
 			gameElem 			 = d.querySelector(".tic-tac-toe"),
 			gameStatusElem = d.querySelector(".game-status"),
+			fieldClass     = "game-field",
 			rowClass 			 = "game-field__row",
 			cellClass 		 = "game-field__cell",
 			gameStarted 	 = false;	
@@ -37,4 +37,7 @@
 			console.error(err.message);
 		}
 	}
+	createField(gameElem, fieldSize, fieldClass, rowClass, cellClass);
+	let fieldElem = d.querySelector(fieldClass);
+
 })(document);
