@@ -92,11 +92,11 @@ body {
 	background-color: #CECECB;
 }
 
-.x_cell {
+.X_cell {
 	background: url("img/X-bg.png") no-repeat center;	
 }
 
-.o_cell {
+.O_cell {
 	background: url("img/O-bg.png") no-repeat center;	
 }
 
