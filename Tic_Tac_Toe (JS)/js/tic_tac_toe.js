@@ -8,8 +8,7 @@
 			gameStatusElem = d.querySelector(".game-status"),
 			fieldClass     = "game-field",
 			rowClass 			 = "game-field__row",
-			cellClass 		 = "game-field__cell",
-			gameStarted 	 = false;	
+			cellClass 		 = "game-field__cell";
 
 	function createField(fm, container = d.body, size = 3, fieldClass = "field", rowClass = "row", cellClass = "cell") {
 		try {
@@ -45,7 +44,7 @@
 
 		for (let row = 0; row < rowElems.length; row++) {
 			let cellElems = rowElems[row].querySelectorAll(`.${cellClass}`),
-					cellsType = Array.prototype.map.call(cellElems, cell => cell.classList[1]);
+					cellsType = Array.prototype.map.call(cellElems, cell => cell.classList[1].toLowerCase());
 
 			for (let col = 0; col < cellElems.length; col++) {
 				if (cellsType[col] == "free_cell") {
@@ -59,4 +58,55 @@
 		}
 	}
 
+	function Checker() {
+		let checkLine = function(fm, player, sRow, sCol, eRow, eCol) {
+			let inLine = 0;
+
+			for (let row = sRow; row < eRow; row++) {
+				for (let col = sCol; col < eCol; col++) {
+					if (fm[row][col] == player) {
+						inLine++;
+					}
+				}
+			}
+
+			return inLine == fm.length;
+		}
+
+		let checkDiagonal = function(fm, player, sIndex, eIndex, reverse = false) {
+			let inDiagonal = 0,
+					fmTemp = fm.slice();
+
+			if (reverse) {
+				fmTemp.reverse();
+			}		
+
+			for (let i = sIndex; i < eIndex; i++) {
+				if (fmTemp[i][i] == player) {
+					inDiagonal++;
+				}
+			}
+
+			return inDiagonal == fm.length; 
+		}
+
+		return function(fm, player) { // checkForWin function
+			let results = [];
+
+			for (let i = 0; i < fm.length; i++) {
+				let v = checkLine(fm, player, 0, i, fm.length, i + 1),
+						h = checkLine(fm, player, i, 0, i + 1, fm.length);
+
+				results.push(v, h);		
+			}
+
+			let d1 = checkDiagonal(fm, player, 0, fm.length),
+					d2 = checkDiagonal(fm, player, 0, fm.length, true);
+
+			results.push(d1, d2);
+
+			return results.some( res => !!res )		
+		}
+	}
+	let checkWin = Checker();
 })(document);
