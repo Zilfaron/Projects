@@ -71,9 +71,11 @@ body {
 	height: 5em;
 	text-align: center;
 	border: 2px solid #000;
-	-webkit-transition: background 0.5s;
-	-o-transition: background 0.5s;
-	transition: background 0.5s;
+	-webkit-transition: background-size 0.5s;
+	-o-transition: background-size 0.5s;
+	transition: background-size 0.5s;
+	-webkit-background-size: 0%;
+	background-size: 0%;
 }
 
 .game-status {
@@ -93,11 +95,15 @@ body {
 }
 
 .X_cell {
-	background: url("img/X-bg.png") no-repeat center;	
+	background: url("img/X-bg.png") no-repeat center;
+	-webkit-background-size: 60%;
+	background-size: 60%;	
 }
 
 .O_cell {
-	background: url("img/O-bg.png") no-repeat center;	
+	background: url("img/O-bg.png") no-repeat center;
+	-webkit-background-size: 60%;
+	background-size: 60%;	
 }
 
 @media screen and (max-width: 876px) {
