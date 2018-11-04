@@ -59,7 +59,7 @@
 		}
 	}
 
-	function Checker() {
+	function winCheck() {
 		let checkLine = function(fm, player, sRow, sCol, eRow, eCol) {
 			let inLine = 0;
 
@@ -109,7 +109,7 @@
 			return results.some( res => !!res )		
 		}
 	}
-	let checkWin = Checker();
+	let checkWin = winCheck();
 
 	function switchPlayer() {
 		try {
