@@ -6,6 +6,7 @@
 			currentPlayer  = null,
 			gameElem 			 = d.querySelector(".tic-tac-toe"),
 			gameStatusElem = d.querySelector(".game-status"),
+			gameStarted 	 = false,
 			fieldClass     = "game-field",
 			rowClass 			 = "game-field__row",
 			cellClass 		 = "game-field__cell";
@@ -13,7 +14,7 @@
 	function createField(fm, container = d.body, size = 3, fieldClass = "field", rowClass = "row", cellClass = "cell") {
 		try {
 			if (size > 5 || size < 2) {
-				throw new Error("The size of the field is incorrect");
+				throw new Error("The size of the field is less than 2 or bigger than 5");
 			}
 
 			let fieldElem = createDOMElem("div", fieldClass);
@@ -74,7 +75,7 @@
 		}
 
 		let checkDiagonal = function(fm, player, sIndex, eIndex, reverse = false) {
-			let inDiagonal = 0,
+			let inLine = 0,
 					fmTemp = fm.slice();
 
 			if (reverse) {
@@ -83,11 +84,11 @@
 
 			for (let i = sIndex; i < eIndex; i++) {
 				if (fmTemp[i][i] == player) {
-					inDiagonal++;
+					inLine++;
 				}
 			}
 
-			return inDiagonal == fm.length; 
+			return inLine == fm.length; 
 		}
 
 		return function(fm, player) { // checkForWin function
@@ -109,4 +110,20 @@
 		}
 	}
 	let checkWin = Checker();
+
+	function switchPlayer() {
+		try {
+			if (!gameStarted) {
+				throw new Error("The game did not started!");
+			}
+
+			if (currentPlayer == "X") {
+				currentPlayer = "O";
+			} else {
+				currentPlayer = "X";
+			}
+		} catch (err) {
+			console.error(err.message);
+		}	
+	}
 })(document);
