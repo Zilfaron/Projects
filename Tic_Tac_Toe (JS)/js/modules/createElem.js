@@ -1,4 +1,4 @@
-/* My function to quickly create DOM elements */
+/* My function to quickly creating DOM elements */
 
 function createDOMElem(tag, ...classes) {
 	let elem = document.createElement(tag);

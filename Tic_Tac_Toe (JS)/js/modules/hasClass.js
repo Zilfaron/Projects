@@ -1,4 +1,4 @@
-/* My function to check for element class */
+/* My hasClass function */
 
 function hasClass(elem, classN) {
 	return elem.classList.contains(classN);
