@@ -204,7 +204,7 @@ class Game {
 		setTimeout( function() {
 			start_btn.removeAttribute("disabled");
 			start_btn.removeAttribute("title");
-		}, 2000);		
+		}, 2500);		
 	}
 }
 
